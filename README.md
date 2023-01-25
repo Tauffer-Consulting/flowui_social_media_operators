@@ -1,2 +1,1 @@
-# [Operators repository name]
-[Description of this Operators repository]
+# [Social Media Operators repository]
