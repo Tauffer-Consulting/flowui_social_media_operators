@@ -1,4 +1,218 @@
 {
+    "YoutubeListVideosOperator": {
+        "name": "YoutubeListVideosOperator",
+        "dependency": {
+            "docker_image": null,
+            "dockerfile": "Dockerfile_youtube",
+            "requirements_file": null
+        },
+        "tags": [],
+        "style": {
+            "node_label": "Youtube list videos",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa-brands fa-youtube",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "List videos from youtube channel.",
+        "container_resources": {
+            "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+            },
+            "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+            }
+        },
+        "input_schema": {
+            "title": "InputModel",
+            "description": "Input data for YoutubeListVideosOperator",
+            "type": "object",
+            "properties": {
+                "channel_id": {
+                    "title": "Channel Id",
+                    "description": "The Id of the Youtube channel.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "channel_id"
+            ]
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "Output data for YoutubeListVideosOperator",
+            "type": "object",
+            "properties": {
+                "message": {
+                    "title": "Message",
+                    "description": "Output message to log",
+                    "default": "",
+                    "type": "string"
+                },
+                "videos_list": {
+                    "title": "Videos List",
+                    "description": "A list containing information about videos.",
+                    "type": "array",
+                    "items": {}
+                }
+            },
+            "required": [
+                "videos_list"
+            ]
+        },
+        "secrets_schema": {
+            "title": "SecretsModel",
+            "description": "Secrets data for YoutubeListVideosOperator",
+            "type": "object",
+            "properties": {
+                "YOUTUBE_API_KEY": {
+                    "title": "Youtube Api Key",
+                    "description": "The Youtube Data API Key.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "YOUTUBE_API_KEY"
+            ]
+        }
+    },
+    "EmailSenderOperator": {
+        "name": "EmailSenderOperator",
+        "dependency": {
+            "docker_image": null,
+            "dockerfile": null,
+            "requirements_file": null
+        },
+        "tags": [],
+        "style": {
+            "node_label": "Email sender Operator",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa-regular fa-envelope",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Email sender",
+        "container_resources": {
+            "use_gpu": false,
+            "requests": {
+                "cpu": "100m",
+                "memory": "100Mi"
+            },
+            "limits": {
+                "cpu": "500m",
+                "memory": "200Mi"
+            }
+        },
+        "input_schema": {
+            "title": "InputModel",
+            "description": "Input data for EmailSenderOperator",
+            "type": "object",
+            "properties": {
+                "email_provider": {
+                    "description": "The email provider to use.",
+                    "default": "gmail",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/ProviderType"
+                        }
+                    ]
+                },
+                "email_receivers": {
+                    "title": "Email Receivers",
+                    "description": "The receivers of the email, as comma-separated values.",
+                    "type": "string"
+                },
+                "email_subject": {
+                    "title": "Email Subject",
+                    "description": "The subject of the email.",
+                    "type": "string"
+                },
+                "email_body": {
+                    "title": "Email Body",
+                    "description": "The body of the email.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "email_receivers",
+                "email_subject",
+                "email_body"
+            ],
+            "definitions": {
+                "ProviderType": {
+                    "title": "ProviderType",
+                    "description": "An enumeration.",
+                    "enum": [
+                        "gmail",
+                        "outlook",
+                        "office365",
+                        "yahoo"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "Output data for EmailSenderOperator",
+            "type": "object",
+            "properties": {
+                "message": {
+                    "title": "Message",
+                    "description": "Output message to log.",
+                    "default": "",
+                    "type": "string"
+                },
+                "success": {
+                    "title": "Success",
+                    "description": "The result of the email sending task.",
+                    "type": "boolean"
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "The error message, if any.",
+                    "default": "",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "success"
+            ]
+        },
+        "secrets_schema": {
+            "title": "SecretsModel",
+            "description": "Secrets data for EmailSenderOperator",
+            "type": "object",
+            "properties": {
+                "EMAIL_SENDER_ACCOUNT": {
+                    "title": "Email Sender Account",
+                    "description": "The email sender account.",
+                    "type": "string"
+                },
+                "EMAIL_SENDER_PASSWORD": {
+                    "title": "Email Sender Password",
+                    "description": "The email sender password",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "EMAIL_SENDER_ACCOUNT",
+                "EMAIL_SENDER_PASSWORD"
+            ]
+        }
+    },
     "YoutubeDownloadOperator": {
         "name": "YoutubeDownloadOperator",
         "dependency": {

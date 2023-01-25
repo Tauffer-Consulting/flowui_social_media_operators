@@ -6,9 +6,27 @@
             "requirements_file": null
         },
         "operators": [
+            "YoutubeListVideosOperator",
             "YoutubeDownloadOperator"
         ],
-        "secrets": [],
+        "secrets": [
+            "YOUTUBE_API_KEY"
+        ],
         "source_image": "taufferconsulting/social_media_operators_image_0:0.1.0"
+    },
+    "social_media_operators_image_1": {
+        "dependency": {
+            "docker_image": null,
+            "dockerfile": null,
+            "requirements_file": null
+        },
+        "operators": [
+            "EmailSenderOperator"
+        ],
+        "secrets": [
+            "EMAIL_SENDER_PASSWORD",
+            "EMAIL_SENDER_ACCOUNT"
+        ],
+        "source_image": "taufferconsulting/social_media_operators_image_1:0.1.0"
     }
 }
