@@ -1,135 +1,73 @@
 {
-    "ExampleComplexOperator": {
-        "name": "ExampleComplexOperator",
+    "YoutubeDownloadOperator": {
+        "name": "YoutubeDownloadOperator",
         "dependency": {
             "docker_image": null,
-            "dockerfile": "Dockerfile_1",
+            "dockerfile": "Dockerfile_youtube",
             "requirements_file": null
         },
-        "tags": [
-            "Example"
-        ],
+        "tags": [],
         "style": {
-            "node_label": "Complex Operator",
+            "node_label": "Youtube Download Operator",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "fas fa-database",
+            "icon_class_name": "fa-brands fa-youtube",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "This is an example of a complex FlowUI Operator",
+        "description": "Downloads content from youtube videos as audio or video files.",
+        "container_resources": {
+            "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+            },
+            "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+            }
+        },
         "input_schema": {
             "title": "InputModel",
+            "description": "Input data for YoutubeDownloadOperator",
             "type": "object",
             "properties": {
-                "arg1": {
-                    "title": "Arg1",
-                    "description": "Distribution mean",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "arg1"
-            ]
-        },
-        "output_schema": {
-            "title": "OutputModel",
-            "type": "object",
-            "properties": {
-                "message": {
-                    "title": "Message",
-                    "description": "Output message to log",
+                "url": {
+                    "title": "Url",
+                    "description": "The url of the video to be downloaded.",
+                    "minLength": 1,
+                    "maxLength": 65536,
+                    "format": "uri",
                     "type": "string"
                 },
-                "result": {
-                    "title": "Result",
-                    "description": "The result of this Operator's processing",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "message",
-                "result"
-            ]
-        },
-        "secrets_schema": {
-            "title": "SecretsModel",
-            "type": "object",
-            "properties": {
-                "EXAMPLE_OPERATOR_SECRET_2": {
-                    "title": "Example Operator Secret 2",
-                    "description": "A secret necessary to run this Operator",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "EXAMPLE_OPERATOR_SECRET_2"
-            ]
-        }
-    },
-    "ExampleSimpleOperator": {
-        "name": "ExampleSimpleOperator",
-        "dependency": {
-            "docker_image": null,
-            "dockerfile": null,
-            "requirements_file": "requirements_0.txt"
-        },
-        "tags": [
-            "Example"
-        ],
-        "style": {
-            "node_label": "Simple Operator",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "fas fa-database",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "This is an example of a simple FlowUI Operator",
-        "input_schema": {
-            "title": "InputModel",
-            "type": "object",
-            "properties": {
-                "distribution_name": {
-                    "description": "Name of the distribution to sample from",
+                "output_type": {
+                    "description": "The type of output file to be downloaded.",
+                    "default": "audio",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/DistributionType"
+                            "$ref": "#/definitions/OutputTypeType"
                         }
                     ]
                 },
-                "distribution_mean": {
-                    "title": "Distribution Mean",
-                    "description": "Distribution mean",
-                    "type": "number"
-                },
-                "distribution_sd": {
-                    "title": "Distribution Sd",
-                    "description": "Distribution standard deviation",
-                    "default": 1.0,
-                    "exclusiveMinimum": 0.0,
-                    "type": "number"
+                "output_file_name": {
+                    "title": "Output File Name",
+                    "description": "The name of the output file. If not provided, the formatted name of the video will be used.",
+                    "type": "string"
                 }
             },
             "required": [
-                "distribution_name",
-                "distribution_mean"
+                "url"
             ],
             "definitions": {
-                "DistributionType": {
-                    "title": "DistributionType",
+                "OutputTypeType": {
+                    "title": "OutputTypeType",
                     "description": "An enumeration.",
                     "enum": [
-                        "gaussian",
-                        "poisson"
+                        "audio",
+                        "video"
                     ],
                     "type": "string"
                 }
@@ -137,37 +75,25 @@
         },
         "output_schema": {
             "title": "OutputModel",
+            "description": "Output data for YoutubeDownloadOperator",
             "type": "object",
             "properties": {
                 "message": {
                     "title": "Message",
                     "description": "Output message to log",
+                    "default": "",
                     "type": "string"
                 },
-                "sample_result": {
-                    "title": "Sample Result",
-                    "description": "The result of this Operator's processing",
+                "file_path": {
+                    "title": "File Path",
+                    "description": "The path to the downloaded file",
                     "type": "string"
                 }
             },
             "required": [
-                "message",
-                "sample_result"
+                "file_path"
             ]
         },
-        "secrets_schema": {
-            "title": "SecretsModel",
-            "type": "object",
-            "properties": {
-                "EXAMPLE_OPERATOR_SECRET_1": {
-                    "title": "Example Operator Secret 1",
-                    "description": "A secret necessary to run this Operator",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "EXAMPLE_OPERATOR_SECRET_1"
-            ]
-        }
+        "secrets_schema": null
     }
 }
