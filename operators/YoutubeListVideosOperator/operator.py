@@ -1,3 +1,8 @@
+""" 
+References:
+- https://developers.google.com/youtube/v3/docs
+- https://www.youtube.com/watch?v=D56_Cx36oGY&ab_channel=ThuVudataanalytics
+"""
 from flowui.base_operator import BaseOperator
 from .models import InputModel, OutputModel
 import googleapiclient.discovery
