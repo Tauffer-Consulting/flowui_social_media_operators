@@ -1,6 +1,6 @@
 {
     "name": "InstagramPostImageOperator",
-    "description": "Publish an image on an Instagram account",
+    "description": "Publish an image to an Instagram account",
     "tags": [
         "Instagram"
     ],
