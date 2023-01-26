@@ -1,0 +1,15 @@
+{
+    "name": "InstagramPostImageOperator",
+    "description": "Publish an image on an Instagram account",
+    "tags": [
+        "Instagram"
+    ],
+    "style": {
+        "node_label": "Instagram Post Image Operator",
+        "node_type": "default",
+        "node_style": {
+            "backgroundColor": "#b3cde8"
+        },
+        "icon_class_name": "fas fa-database"
+    }
+}
