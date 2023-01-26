@@ -21,11 +21,15 @@
             "requirements_file": null
         },
         "operators": [
-            "EmailSenderOperator"
+            "EmailSenderOperator",
+            "InstagramPostImageOperator"
         ],
         "secrets": [
             "EMAIL_SENDER_PASSWORD",
-            "EMAIL_SENDER_ACCOUNT"
+            "APP_SECRET",
+            "EMAIL_SENDER_ACCOUNT",
+            "ACCESS_TOKEN",
+            "APP_ID"
         ],
         "source_image": "taufferconsulting/social_media_operators_image_1:0.1.0"
     }

@@ -213,6 +213,101 @@
             ]
         }
     },
+    "InstagramPostImageOperator": {
+        "name": "InstagramPostImageOperator",
+        "dependency": {
+            "docker_image": null,
+            "dockerfile": null,
+            "requirements_file": null
+        },
+        "tags": [
+            "Instagram"
+        ],
+        "style": {
+            "node_label": "Instagram Post Image Operator",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#b3cde8"
+            },
+            "useIcon": true,
+            "icon_class_name": "fas fa-database",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Publish an image on an Instagram account",
+        "input_schema": {
+            "title": "InputModel",
+            "description": "Publish an image on Intagram",
+            "type": "object",
+            "properties": {
+                "image_url": {
+                    "title": "Image Url",
+                    "description": "public URL of the image",
+                    "type": "string"
+                },
+                "caption": {
+                    "title": "Caption",
+                    "description": "post caption",
+                    "type": "string"
+                },
+                "facebook_page_name": {
+                    "title": "Facebook Page Name",
+                    "description": "Facebook page connected to the Instagram account",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "image_url",
+                "facebook_page_name"
+            ]
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "Publish an image on Intagram",
+            "type": "object",
+            "properties": {
+                "message": {
+                    "title": "Message",
+                    "description": "output message to log",
+                    "default": "",
+                    "type": "string"
+                },
+                "post_id": {
+                    "title": "Post Id",
+                    "description": "post ID",
+                    "type": "string"
+                }
+            }
+        },
+        "secrets_schema": {
+            "title": "SecretsModel",
+            "description": "Example Operator Secrets",
+            "type": "object",
+            "properties": {
+                "APP_ID": {
+                    "title": "App Id",
+                    "description": "ID from a Facebook App",
+                    "type": "string"
+                },
+                "APP_SECRET": {
+                    "title": "App Secret",
+                    "description": "secret from a Facebook App",
+                    "type": "string"
+                },
+                "ACCESS_TOKEN": {
+                    "title": "Access Token",
+                    "description": "access_token getted from a Facebook App",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "APP_ID",
+                "APP_SECRET",
+                "ACCESS_TOKEN"
+            ]
+        }
+    },
     "YoutubeDownloadOperator": {
         "name": "YoutubeDownloadOperator",
         "dependency": {
