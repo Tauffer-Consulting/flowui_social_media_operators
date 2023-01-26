@@ -12,7 +12,7 @@
         "secrets": [
             "YOUTUBE_API_KEY"
         ],
-        "source_image": "taufferconsulting/social_media_operators_image_0:0.1.0"
+        "source_image": "taufferconsulting/social_media_operators_image_0:0.2.0"
     },
     "social_media_operators_image_1": {
         "dependency": {
@@ -25,12 +25,12 @@
             "InstagramPostImageOperator"
         ],
         "secrets": [
-            "EMAIL_SENDER_PASSWORD",
-            "APP_SECRET",
-            "EMAIL_SENDER_ACCOUNT",
             "ACCESS_TOKEN",
-            "APP_ID"
+            "EMAIL_SENDER_PASSWORD",
+            "APP_ID",
+            "APP_SECRET",
+            "EMAIL_SENDER_ACCOUNT"
         ],
-        "source_image": "taufferconsulting/social_media_operators_image_1:0.1.0"
+        "source_image": "taufferconsulting/social_media_operators_image_1:0.2.0"
     }
 }
