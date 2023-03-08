@@ -83,6 +83,103 @@
             ]
         }
     },
+    "YoutubeDownloadOperator": {
+        "name": "YoutubeDownloadOperator",
+        "dependency": {
+            "docker_image": null,
+            "dockerfile": "Dockerfile_youtube",
+            "requirements_file": null
+        },
+        "tags": [],
+        "style": {
+            "node_label": "Youtube Download Operator",
+            "node_type": "default",
+            "node_style": {
+                "backgroundColor": "#ebebeb"
+            },
+            "useIcon": true,
+            "icon_class_name": "fa-brands fa-youtube",
+            "iconStyle": {
+                "cursor": "pointer"
+            }
+        },
+        "description": "Downloads content from youtube videos as audio or video files.",
+        "container_resources": {
+            "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+            },
+            "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+            }
+        },
+        "input_schema": {
+            "title": "InputModel",
+            "description": "Input data for YoutubeDownloadOperator",
+            "type": "object",
+            "properties": {
+                "url": {
+                    "title": "Url",
+                    "description": "The url of the video to be downloaded.",
+                    "minLength": 1,
+                    "maxLength": 65536,
+                    "format": "uri",
+                    "type": "string"
+                },
+                "output_type": {
+                    "description": "The type of output file to be downloaded.",
+                    "default": "audio",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/OutputTypeType"
+                        }
+                    ]
+                },
+                "output_file_name": {
+                    "title": "Output File Name",
+                    "description": "The name of the output file. If not provided, the formatted name of the video will be used.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "definitions": {
+                "OutputTypeType": {
+                    "title": "OutputTypeType",
+                    "description": "An enumeration.",
+                    "enum": [
+                        "audio",
+                        "video"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "output_schema": {
+            "title": "OutputModel",
+            "description": "Output data for YoutubeDownloadOperator",
+            "type": "object",
+            "properties": {
+                "message": {
+                    "title": "Message",
+                    "description": "Output message to log",
+                    "default": "",
+                    "type": "string"
+                },
+                "file_path": {
+                    "title": "File Path",
+                    "description": "The path to the downloaded file",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "file_path"
+            ]
+        },
+        "secrets_schema": null
+    },
     "EmailSenderOperator": {
         "name": "EmailSenderOperator",
         "dependency": {
@@ -307,102 +404,5 @@
                 "ACCESS_TOKEN"
             ]
         }
-    },
-    "YoutubeDownloadOperator": {
-        "name": "YoutubeDownloadOperator",
-        "dependency": {
-            "docker_image": null,
-            "dockerfile": "Dockerfile_youtube",
-            "requirements_file": null
-        },
-        "tags": [],
-        "style": {
-            "node_label": "Youtube Download Operator",
-            "node_type": "default",
-            "node_style": {
-                "backgroundColor": "#ebebeb"
-            },
-            "useIcon": true,
-            "icon_class_name": "fa-brands fa-youtube",
-            "iconStyle": {
-                "cursor": "pointer"
-            }
-        },
-        "description": "Downloads content from youtube videos as audio or video files.",
-        "container_resources": {
-            "requests": {
-                "cpu": "100m",
-                "memory": "128Mi"
-            },
-            "limits": {
-                "cpu": "500m",
-                "memory": "512Mi"
-            }
-        },
-        "input_schema": {
-            "title": "InputModel",
-            "description": "Input data for YoutubeDownloadOperator",
-            "type": "object",
-            "properties": {
-                "url": {
-                    "title": "Url",
-                    "description": "The url of the video to be downloaded.",
-                    "minLength": 1,
-                    "maxLength": 65536,
-                    "format": "uri",
-                    "type": "string"
-                },
-                "output_type": {
-                    "description": "The type of output file to be downloaded.",
-                    "default": "audio",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/OutputTypeType"
-                        }
-                    ]
-                },
-                "output_file_name": {
-                    "title": "Output File Name",
-                    "description": "The name of the output file. If not provided, the formatted name of the video will be used.",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "url"
-            ],
-            "definitions": {
-                "OutputTypeType": {
-                    "title": "OutputTypeType",
-                    "description": "An enumeration.",
-                    "enum": [
-                        "audio",
-                        "video"
-                    ],
-                    "type": "string"
-                }
-            }
-        },
-        "output_schema": {
-            "title": "OutputModel",
-            "description": "Output data for YoutubeDownloadOperator",
-            "type": "object",
-            "properties": {
-                "message": {
-                    "title": "Message",
-                    "description": "Output message to log",
-                    "default": "",
-                    "type": "string"
-                },
-                "file_path": {
-                    "title": "File Path",
-                    "description": "The path to the downloaded file",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "file_path"
-            ]
-        },
-        "secrets_schema": null
     }
 }
