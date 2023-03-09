@@ -1,7 +1,24 @@
 {
-    "social_media_operators_image_0": {
+    "group0": {
         "dependency": {
-            "docker_image": null,
+            "dockerfile": null,
+            "requirements_file": null
+        },
+        "operators": [
+            "EmailSenderOperator",
+            "InstagramPostImageOperator"
+        ],
+        "secrets": [
+            "APP_ID",
+            "ACCESS_TOKEN",
+            "APP_SECRET",
+            "EMAIL_SENDER_ACCOUNT",
+            "EMAIL_SENDER_PASSWORD"
+        ],
+        "source_image": "taufferconsulting/social_media_operators:0.2.1-group0"
+    },
+    "group1": {
+        "dependency": {
             "dockerfile": "Dockerfile_youtube",
             "requirements_file": null
         },
@@ -12,25 +29,6 @@
         "secrets": [
             "YOUTUBE_API_KEY"
         ],
-        "source_image": "taufferconsulting/social_media_operators_image_0:0.2.0"
-    },
-    "social_media_operators_image_1": {
-        "dependency": {
-            "docker_image": null,
-            "dockerfile": null,
-            "requirements_file": null
-        },
-        "operators": [
-            "EmailSenderOperator",
-            "InstagramPostImageOperator"
-        ],
-        "secrets": [
-            "ACCESS_TOKEN",
-            "EMAIL_SENDER_ACCOUNT",
-            "EMAIL_SENDER_PASSWORD",
-            "APP_ID",
-            "APP_SECRET"
-        ],
-        "source_image": "taufferconsulting/social_media_operators_image_1:0.2.0"
+        "source_image": "taufferconsulting/social_media_operators:0.2.1-group1"
     }
 }
