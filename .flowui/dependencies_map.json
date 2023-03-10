@@ -9,13 +9,13 @@
             "InstagramPostImageOperator"
         ],
         "secrets": [
-            "APP_SECRET",
-            "APP_ID",
+            "ACCESS_TOKEN",
             "EMAIL_SENDER_PASSWORD",
             "EMAIL_SENDER_ACCOUNT",
-            "ACCESS_TOKEN"
+            "APP_ID",
+            "APP_SECRET"
         ],
-        "source_image": "taufferconsulting/social_media_operators:0.2.1-group0"
+        "source_image": "taufferconsulting/social_media_operators:0.2.2-group0"
     },
     "group1": {
         "dependency": {
@@ -29,6 +29,6 @@
         "secrets": [
             "YOUTUBE_API_KEY"
         ],
-        "source_image": "taufferconsulting/social_media_operators:0.2.1-group1"
+        "source_image": "taufferconsulting/social_media_operators:0.2.2-group1"
     }
 }
