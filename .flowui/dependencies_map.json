@@ -9,11 +9,11 @@
             "InstagramPostImageOperator"
         ],
         "secrets": [
-            "APP_ID",
-            "ACCESS_TOKEN",
             "APP_SECRET",
+            "APP_ID",
+            "EMAIL_SENDER_PASSWORD",
             "EMAIL_SENDER_ACCOUNT",
-            "EMAIL_SENDER_PASSWORD"
+            "ACCESS_TOKEN"
         ],
         "source_image": "taufferconsulting/social_media_operators:0.2.1-group0"
     },
